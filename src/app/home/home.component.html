@@ -1,0 +1,27 @@
+<div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+  <h1 class="text-2xl font-bold mb-6">Career Suggestion Tool</h1>
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label class="block text-gray-700">Skills</label>
+      <input type="text" [(ngModel)]="skills" name="skills" class="w-full px-4 py-2 border rounded-lg">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Interests</label>
+      <input type="text" [(ngModel)]="interests" name="interests" class="w-full px-4 py-2 border rounded-lg">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Education Level</label>
+      <select [(ngModel)]="educationLevel" name="educationLevel" class="w-full px-4 py-2 border rounded-lg">
+        <option value="high-school">High School</option>
+        <option value="bachelors">Bachelor's Degree</option>
+        <option value="masters">Master's Degree</option>
+        <option value="phd">PhD</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Location</label>
+      <input type="text" [(ngModel)]="location" name="location" class="w-full px-4 py-2 border rounded-lg">
+    </div>
+    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Get Suggestions</button>
+  </form>
+</div>
