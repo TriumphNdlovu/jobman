@@ -1,4 +1,5 @@
-<div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg transition-all duration-300 hover:shadow-2xl">
+<div class="flex flex-col items-center justify-center min-h-screen bg-cover bg-center">
+
   <svg
     xmlns="http://www.w3.org/2000/svg"
     class="w-12 h-12 mx-auto text-blue-500"
@@ -7,88 +8,48 @@
     stroke="currentColor"
   >
     <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 7h18M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 0 012 2v2"
-      />
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M3 7h18M3 7a2 2 0 012-2h14a2 2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 0 012 2v2"
+    />
   </svg>
 
   <h1 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Jobman</h1>
+  <p class="text-center mb-8">
+    Welcome to JobMan! Let’s gather some details to find your perfect career match.
+  </p>
 
-  <form (ngSubmit)="onSubmit()" #careerForm="ngForm" class="space-y-6">
-    <!-- Skills Input -->
-    <div class="mb-4">
-      <label for="skills" class="block text-gray-700 font-medium mb-2">Skills</label>
-      <input
-        type="text"
-        [(ngModel)]="skills"
-        name="skills"
-        id="skills"
-        placeholder="Enter your skills (e.g., Java, Design, Marketing)"
-        required
-        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-      />
-    </div>
+  <form (ngSubmit)="onSubmit()" #careerForm="ngForm" class="space-y-6 bg-white p-8 shadow-xl rounded-lg w-full max-w-md">
 
-    <!-- Interests Input -->
-    <div class="mb-4">
-      <label for="interests" class="block text-gray-700 font-medium mb-2">Interests</label>
-      <input
-        type="text"
-        [(ngModel)]="interests"
-        name="interests"
-        id="interests"
-        placeholder="Enter your interests (e.g., Software Development, Research)"
-        required
-        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-      />
-    </div>
+    <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Full Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-    <!-- Education Level Dropdown -->
-    <div class="mb-4">
-      <label for="educationLevel" class="block text-gray-700 font-medium mb-2">Education Level</label>
-      <select
-        [(ngModel)]="educationLevel"
-        name="educationLevel"
-        id="educationLevel"
-        required
-        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-      >
-        <option value="high-school">High School</option>
-        <option value="bachelors">Bachelor's Degree</option>
-        <option value="masters">Master's Degree</option>
-        <option value="phd">PhD</option>
-      </select>
-    </div>
+    <textarea [(ngModel)]="skills" name="skills" placeholder="Skills (e.g., Java, Design)" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
-    <!-- Location Input -->
-    <div class="mb-4">
-      <label for="location" class="block text-gray-700 font-medium mb-2">Location</label>
-      <input
-        type="text"
-        [(ngModel)]="location"
-        name="location"
-        id="location"
-        placeholder="Enter your location (e.g., New York, London)"
-        required
-        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-      />
-    </div>
+    <textarea [(ngModel)]="interests" name="interests" placeholder="Interests (e.g., Development, Research)" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
-    <!-- Submit Button -->
-    <button
-      type="submit"
-      [disabled]="!careerForm.form.valid"
-      class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
-    >
-      Get Suggestions
-    </button>
+    <select [(ngModel)]="experienceLevel" name="experienceLevel" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <option value="entry">Entry Level (0-2 years)</option>
+      <option value="mid">Mid Level (3-5 years)</option>
+      <option value="senior">Senior Level (6+ years)</option>
+    </select>
+
+    <select [(ngModel)]="educationLevel" name="educationLevel" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <option value="high-school">High School</option>
+      <option value="bachelors">Bachelor's Degree</option>
+      <option value="masters">Master's Degree</option>
+      <option value="phd">PhD</option>
+    </select>
+
+    <textarea [(ngModel)]="softSkills" name="softSkills" placeholder="Soft Skills (e.g., Communication, Leadership)" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+    <textarea [(ngModel)]="certifications" name="certifications" placeholder="Certifications (e.g., PMP, AWS)" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+    <button type="submit" [disabled]="!careerForm.form.valid" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition">Get Suggestions</button>
   </form>
 
-  <!-- Loading Spinner (conditionally displayed) -->
-  <div *ngIf="isLoading" class="mt-4 text-center">
-    <div class="spinner-border animate-spin border-4 border-t-4 border-blue-500 rounded-full w-10 h-10 mx-auto"></div>
-    <p class="text-blue-500 mt-2">Loading...</p>
+  <div *ngIf="isLoading" class="text-center mt-4">
+    <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+    <p class="text-blue-500 mt-2">Loading your personalized job suggestions...</p>
   </div>
 </div>

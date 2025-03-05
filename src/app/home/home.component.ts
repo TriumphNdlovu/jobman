@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 @Component({
   imports: [
     CommonModule,
@@ -10,21 +11,43 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
+  fullName: string = '';
   skills: string = '';
   interests: string = '';
-  educationLevel: string = 'bachelors';
-  location: string = '';
+  experienceLevel: string = 'entry';
+  educationLevel: string = 'high-school';
+  softSkills: string = '';
+  certifications: string = '';
+
   isLoading: boolean = false;
+
+
+
+  constructor(private http: HttpClient) { }
+
+
+  getCareerSuggestions() {
+    return this.http.post('http://localhost:5000/career-suggestions',
+    {
+      fullName: this.fullName,
+      skills: this.skills,
+      interests: this.interests,
+      experienceLevel: this.experienceLevel,
+      educationLevel: this.educationLevel,
+      softSkills: this.softSkills,
+      certifications: this.certifications,
+    }
+    );
+  }
 
   onSubmit() {
     this.isLoading = true;
-
-    // Simulate API call or processing time
-    setTimeout(() => {
+    this.getCareerSuggestions().subscribe((response) => {
+      console.log(response);
       this.isLoading = false;
-      // Process the form data and show career suggestions
-      alert('Form submitted! Show career suggestions here.');
-    }, 2000); // Simulated delay
+    });
+
   }
 }

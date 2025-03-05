@@ -8,6 +8,7 @@ import { LandingModule } from './landing/landing.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
+import { provideHttpClient } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     CommonModule,
   ],
-  providers: [],           // Define any services if needed here
+  providers: [provideHttpClient()],           // Define any services if needed here
   bootstrap: [AppComponent] // Bootstrap the AppComponent (root component)
 })
 export class AppModule { }
