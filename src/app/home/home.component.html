@@ -1,8 +1,10 @@
-<div class="flex flex-col items-center justify-center min-h-screen bg-cover bg-center">
+<div class="relative flex flex-col items-center justify-center bg-black min-h-screen">
+  <!-- Background image with opacity fix -->
+  <div class="fixed inset-0 bg-cover bg-center z-0 opacity-60" style="background-image: url('/LandingBG.jpg');"></div>
 
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="w-12 h-12 mx-auto text-blue-500"
+    class="w-20 h-20 mx-auto text-purple-600 z-10"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -11,45 +13,44 @@
       stroke-linecap="round"
       stroke-linejoin="round"
       stroke-width="2"
-      d="M3 7h18M3 7a2 2 0 012-2h14a2 2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 0 012 2v2"
+      d="M3 7h18M3 7a2 2 0 012-2h14a2 2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 2 0 012 2v2"
     />
   </svg>
 
-  <h1 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Jobman</h1>
-  <p class="text-center mb-8">
+  <h1 class="text-5xl font-extrabold text-white mb-10 text-center z-10 relative">Jobman</h1>
+  <p class="text-center text-lg text-white font-bold mb-12 z-10 relative backdrop-blur-2xl">
     Welcome to JobMan! Let’s gather some details to find your perfect career match.
   </p>
 
-  <form (ngSubmit)="onSubmit()" #careerForm="ngForm" class="space-y-6 bg-white p-8 shadow-xl rounded-lg w-full max-w-md">
+  <form (ngSubmit)="onSubmit()" #careerForm="ngForm" class="space-y-8 bg-white p-12 shadow-2xl rounded-2xl w-full max-w-4xl z-10 relative">
+    <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Full Name" required class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400" />
 
-    <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Full Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    <textarea [(ngModel)]="skills" name="skills" placeholder="Skills (e.g., Java, Design)" required class="w-full h-32 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
 
-    <textarea [(ngModel)]="skills" name="skills" placeholder="Skills (e.g., Java, Design)" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    <textarea [(ngModel)]="interests" name="interests" placeholder="Interests (e.g., Development, Research)" required class="w-full h-32 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
 
-    <textarea [(ngModel)]="interests" name="interests" placeholder="Interests (e.g., Development, Research)" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-
-    <select [(ngModel)]="experienceLevel" name="experienceLevel" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <select [(ngModel)]="experienceLevel" name="experienceLevel" required class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400">
       <option value="entry">Entry Level (0-2 years)</option>
       <option value="mid">Mid Level (3-5 years)</option>
       <option value="senior">Senior Level (6+ years)</option>
     </select>
 
-    <select [(ngModel)]="educationLevel" name="educationLevel" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <select [(ngModel)]="educationLevel" name="educationLevel" required class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400">
       <option value="high-school">High School</option>
       <option value="bachelors">Bachelor's Degree</option>
       <option value="masters">Master's Degree</option>
       <option value="phd">PhD</option>
     </select>
 
-    <textarea [(ngModel)]="softSkills" name="softSkills" placeholder="Soft Skills (e.g., Communication, Leadership)" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    <textarea [(ngModel)]="softSkills" name="softSkills" placeholder="Soft Skills (e.g., Communication, Leadership)" class="w-full h-24 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
 
-    <textarea [(ngModel)]="certifications" name="certifications" placeholder="Certifications (e.g., PMP, AWS)" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    <textarea [(ngModel)]="certifications" name="certifications" placeholder="Certifications (e.g., PMP, AWS)" class="w-full h-24 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
 
-    <button type="submit" [disabled]="!careerForm.form.valid" class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition">Get Suggestions</button>
+    <button type="submit" [disabled]="!careerForm.form.valid" class="w-full bg-purple-600 text-white p-4 rounded-xl hover:bg-purple-700 transition transform hover:scale-105 z-10 relative">Get Suggestions</button>
   </form>
 
-  <div *ngIf="isLoading" class="text-center mt-4">
-    <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-    <p class="text-blue-500 mt-2">Loading your personalized job suggestions...</p>
+  <div *ngIf="isLoading" class="text-center mt-8 z-10 relative">
+    <div class="w-14 h-14 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+    <p class="text-purple-600 mt-4">Loading your personalized job suggestions...</p>
   </div>
 </div>

@@ -22,28 +22,55 @@ app.post('/career-suggestions', async (req, res) => {
     certifications,
   } = req.body;
 
-  try {
-    // const response = await axios.post(
-    //   'https://api.openai.com/v1/completions',
-    //   {
-    //     model: 'text-davinci-003',  // GPT-3 model or any AI model
-    //     prompt: `Suggest career paths for someone with these skills: ${skills}, interests: ${interests}, education level: ${educationLevel}, location: ${location}`,
-    //     max_tokens: 100
-    //   },
-    //   {
-    //     headers: {
-    //       'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-    //       'Content-Type': 'application/json'
-    //     }
-    //   }
-    // );
+  const {
+    GoogleGenerativeAI,
+    HarmCategory,
+    HarmBlockThreshold,
+  } = require("@google/generative-ai");
 
-    res.json( " we received " + skills + " and " + interests + " and " + experienceLevel + " and " + workStyle + " and " + industry + " and " + softSkills + " and " + certifications
-          + " and " + location + " and " + availability + " and " + education + ""
-          );
+  const apiKey = process.env.GOOGLE_STUDIO_ID;
+  const genAI = new GoogleGenerativeAI(apiKey);
+
+  const model = genAI.getGenerativeModel({
+    model: "gemini-2.0-flash",
+  });
+
+  const generationConfig = {
+    temperature: 1,
+    topP: 0.95,
+    topK: 40,
+    maxOutputTokens: 8192,
+    responseMimeType: "text/plain",
+  };
+
+  try {
+    const chatSession = model.startChat({
+      generationConfig,
+      history: [],
+    });
+
+    const result = await chatSession.sendMessage(
+      `I need help with career suggestions based on the following details:
+
+      - **Full Name**: ${fullName}
+      - **Skills**: ${skills}
+      - **Interests**: ${interests}
+      - **Experience Level**: ${experienceLevel} (e.g., Entry Level, Mid Level, Senior Level)
+      - **Education Level**: ${educationLevel} (e.g., High School, Bachelor's Degree, Master's Degree, PhD)
+      - **Soft Skills**: ${softSkills} (e.g., Communication, Leadership)
+      - **Certifications**: ${certifications} (e.g., PMP, AWS)
+
+      Please provide a list of career suggestions that match my profile. Consider my skills, experience level, education, soft skills, and certifications in your suggestions.`
+    );
+
+
+
+    res.json({
+      careerSuggestions: result.response.text,
+    });
   } catch (error) {
-    console.error('Error generating career suggestions:', error);
-    res.status(500).send('Error generating suggestions');
+    console.error("Error generating career suggestions:", error);
+    res.status(500).json({ error: "Failed to generate career suggestions" });
   }
 });
 
