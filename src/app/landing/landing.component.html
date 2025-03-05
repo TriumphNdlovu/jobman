@@ -1,14 +1,35 @@
 <div class="relative flex flex-col items-center justify-center h-screen bg-cover bg-center" style="background-image: url('/LandingBG.jpg');">
   <div class="absolute inset-0 bg-black opacity-50"></div>
   <div class="relative z-10 flex flex-col items-center justify-center">
+    <svg
+      class="w-24 h-24 text-white animate__animated animate__fadeIn animate__delay-0s"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <!-- Drawing of a briefcase -->
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M3 7h18M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 0 012 2v2"
+      />
+    </svg>
     <h1 class="text-5xl font-extrabold text-white mb-6 text-center animate__animated animate__fadeIn animate__delay-1s">
-      Career Suggestion Tool
+      Welcome to JobMan
     </h1>
-    <p class="text-lg text-white mb-8 text-center animate__animated animate__fadeIn animate__delay-2s">
-      Explore career paths and discover your next big opportunity.
+    <p class="text-lg text-white mb-8 text-center">
+      Your one-stop shop for career suggestions and job applications, all in one place.
+      <br/>
+      Get started now and find your dream job!
     </p>
 
-    <!-- <app-button
-    ></app-button> -->
+    <button
+      class="bg-pink-300 text-black font-bold py-2 px-4 rounded-lg shadow-lg uppercase hover:bg-white hover:cursor-pointer text-sm animate__animated animate__fadeIn animate__delay-3s"
+      (click)="router.navigate(['/home'])"
+    >
+      Get Started
+    </button>
   </div>
 </div>

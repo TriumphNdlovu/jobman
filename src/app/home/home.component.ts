@@ -1,30 +1,30 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 @Component({
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
   skills: string = '';
   interests: string = '';
-  educationLevel: string = '';
+  educationLevel: string = 'bachelors';
   location: string = '';
-
-  constructor(public router: Router) {}
+  isLoading: boolean = false;
 
   onSubmit() {
-    const userInput = {
-      skills: this.skills,
-      interests: this.interests,
-      educationLevel: this.educationLevel,
-      location: this.location
-    };
-    this.router.navigate(['/results'], { state: { data: userInput } });
+    this.isLoading = true;
+
+    // Simulate API call or processing time
+    setTimeout(() => {
+      this.isLoading = false;
+      // Process the form data and show career suggestions
+      alert('Form submitted! Show career suggestions here.');
+    }, 2000); // Simulated delay
   }
 }
