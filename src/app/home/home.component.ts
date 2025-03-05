@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   imports: [
     CommonModule,
@@ -25,7 +26,7 @@ export class HomeComponent {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router:Router) { }
 
 
   getCareerSuggestions() {
@@ -45,8 +46,8 @@ export class HomeComponent {
   onSubmit() {
     this.isLoading = true;
     this.getCareerSuggestions().subscribe((response) => {
-      console.log(response);
       this.isLoading = false;
+      this.router.navigate(['/results'], { state: { response } });
     });
 
   }

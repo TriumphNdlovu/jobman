@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-results',
@@ -9,12 +10,18 @@ import { Router } from '@angular/router';
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent {
-  userInput: any;
-  careerSuggestions: string[] = ['Software Developer', 'Data Scientist'];
-  jobApplications: string[] = ['https://example.com/job1', 'https://example.com/job2'];
+export class ResultsComponent implements OnInit {
 
-  constructor(public router: Router) {
-    this.userInput = this.router.getCurrentNavigation()?.extras.state?.['data'];
+  careerSuggestions: string[] = [];
+
+  constructor(public router: Router) {}
+
+  ngOnInit() {
+
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state) {
+      this.careerSuggestions = navigation.extras.state['response'];
+    }
   }
+
 }
