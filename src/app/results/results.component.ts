@@ -1,27 +1,34 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 
+interface CareerSuggestion {
+  role: string;
+  description: string;
+  whyItFits: string;
+}
+
 @Component({
-  selector: 'app-results',
-  standalone: true,
   imports: [CommonModule],
+  selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent {
+  careerSuggestions: any;
 
-  careerSuggestions: string[] = [];
-
-  constructor(public router: Router) {}
-
-  ngOnInit() {
-
+  constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras.state) {
-      this.careerSuggestions = navigation.extras.state['response'];
+
+    const state = navigation?.extras.state as { response?: { careerSuggestions: CareerSuggestion[] } };
+    const response = state?.response?.careerSuggestions;
+
+    if (Array.isArray(response)) {
+      this.careerSuggestions = response;
     }
+
+    console.log(this.careerSuggestions); // Should now log just the array
   }
 
 }

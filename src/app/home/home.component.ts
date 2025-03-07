@@ -45,10 +45,16 @@ export class HomeComponent {
 
   onSubmit() {
     this.isLoading = true;
-    this.getCareerSuggestions().subscribe((response) => {
-      this.isLoading = false;
-      this.router.navigate(['/results'], { state: { response } });
+    this.getCareerSuggestions().subscribe({
+      next: (response) => {
+        this.isLoading = false;
+        this.router.navigate(['/results'], { state: { response } });
+      },
+      error: (error) => {
+        this.isLoading = false;
+        console.error('Failed to get career suggestions:', error);
+      }
     });
-
   }
+
 }

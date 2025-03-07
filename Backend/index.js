@@ -1,12 +1,11 @@
 const express = require('express');
-const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
 const cors = require('cors');
 app.use(cors());
-app.use(express.json());  // to parse JSON bodies
+app.use(express.json()); // to parse JSON bodies
 
 const PORT = process.env.PORT || 5000;
 
@@ -22,17 +21,13 @@ app.post('/career-suggestions', async (req, res) => {
     certifications,
   } = req.body;
 
-  const {
-    GoogleGenerativeAI,
-    HarmCategory,
-    HarmBlockThreshold,
-  } = require("@google/generative-ai");
+  const { GoogleGenerativeAI } = require('@google/generative-ai');
 
   const apiKey = process.env.GOOGLE_STUDIO_ID;
   const genAI = new GoogleGenerativeAI(apiKey);
 
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
+    model: 'gemini-2.0-flash',
   });
 
   const generationConfig = {
@@ -40,7 +35,6 @@ app.post('/career-suggestions', async (req, res) => {
     topP: 0.95,
     topK: 40,
     maxOutputTokens: 8192,
-    responseMimeType: "text/plain",
   };
 
   try {
@@ -50,30 +44,59 @@ app.post('/career-suggestions', async (req, res) => {
     });
 
     const result = await chatSession.sendMessage(
-      `I need help with career suggestions based on the following details:
+      `I need career suggestions based on the following details:
 
-      - **Full Name**: ${fullName}
-      - **Skills**: ${skills}
-      - **Interests**: ${interests}
-      - **Experience Level**: ${experienceLevel} (e.g., Entry Level, Mid Level, Senior Level)
-      - **Education Level**: ${educationLevel} (e.g., High School, Bachelor's Degree, Master's Degree, PhD)
-      - **Soft Skills**: ${softSkills} (e.g., Communication, Leadership)
-      - **Certifications**: ${certifications} (e.g., PMP, AWS)
+      - Full Name: ${fullName}
+      - Skills: ${skills}
+      - Interests: ${interests}
+      - Experience Level: ${experienceLevel} (e.g., Entry Level, Mid Level, Senior Level)
+      - Education Level: ${educationLevel} (e.g., High School, Bachelor's Degree, Master's Degree, PhD)
+      - Soft Skills: ${softSkills} (e.g., Communication, Leadership)
+      - Certifications: ${certifications} (e.g., PMP, AWS)
 
-      Please provide a list of career suggestions that match my profile. Consider my skills, experience level, education, soft skills, and certifications in your suggestions.`
+      Respond ONLY with a JSON array, like this:
+
+      [
+        {
+          "role": "Role Title",
+          "description": "A brief description of the role and its key responsibilities.",
+          "whyItFits": "Why this role aligns with my skills, experience, education, and interests."
+        }
+      ]
+
+      Your entire response should start with [ and end with ]. No additional comments, explanations, or headers.`
     );
 
+    console.log('Full AI response:', result);
 
+    const textResult = result.response.candidates[0]?.content?.parts[0]?.text;
 
-    res.json({
-      careerSuggestions: result.response.text,
-    });
+    console.log('Extracted text:', textResult);
+
+    let careerSuggestions = [];
+
+    if (textResult) {
+      // Clean up markdown-style code block if present
+      const cleanJson = textResult.replace(/^```json\s*/, '').replace(/```$/, '');
+
+      try {
+        careerSuggestions = JSON.parse(cleanJson); // Parse the cleaned JSON string
+      } catch (parseError) {
+        console.error('Failed to parse AI response:', parseError);
+        return res.status(500).json({ error: 'Invalid JSON format in AI response' });
+      }
+    } else {
+      console.error('No valid JSON array found in AI response.');
+    }
+
+    res.json({ careerSuggestions });
   } catch (error) {
-    console.error("Error generating career suggestions:", error);
-    res.status(500).json({ error: "Failed to generate career suggestions" });
+    console.error('Failed to get career suggestions:', error);
+    res.status(500).json({ error: 'Failed to get career suggestions' });
   }
 });
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Backend server running on http://localhost:${PORT}`);
 });

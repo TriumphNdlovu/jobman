@@ -1,19 +1,25 @@
-<div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
-  <h1 class="text-2xl font-bold mb-6">Career Suggestions</h1>
-  <div *ngIf="careerSuggestions.length > 0">
-    <h2 class="text-xl font-semibold mb-4">Based on your input, we suggest:</h2>
-    <ul class="list-disc list-inside mb-6">
-      <li *ngFor="let career of careerSuggestions" class="mb-2">{{ career }}</li>
-    </ul>
-    <h2 class="text-xl font-semibold mb-4">Job Applications:</h2>
-    <ul class="list-disc list-inside">
-      <li *ngFor="let job of jobApplications" class="mb-2">
-        <a [href]="job" target="_blank" class="text-blue-500 hover:underline">{{ job }}</a>
-      </li>
-    </ul>
+<div class="min-h-screen relative  p-8">
+
+  <div class="fixed inset-0 bg-cover bg-center z-0 opacity-50" style="background-image: url('/LandingBG.jpg');"></div>
+
+  <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+
+
+  <div class="relative z-10">
+    <h2 class="text-4xl font-extrabold text-center text-white mb-4">🚀 Your Personalized Career Suggestions</h2>
+    <p class="text-center text-lg text-gray-200 mb-10">
+      Based on your skills, interests, and experience, here are some roles we think would be a great fit for you. Explore your potential!
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        *ngFor="let suggestion of careerSuggestions"
+        class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
+      >
+        <h3 class="text-2xl font-semibold mb-4 text-indigo-800">{{ suggestion.role }}</h3>
+        <p class="text-gray-600 mb-2"><strong class="text-indigo-600">Description:</strong> {{ suggestion.description }}</p>
+        <p class="text-gray-600"><strong class="text-indigo-600">Why it fits:</strong> {{ suggestion.whyItFits }}</p>
+      </div>
+    </div>
   </div>
-  <div *ngIf="careerSuggestions.length === 0">
-    <p class="text-gray-700">No suggestions found. Please try again with different inputs.</p>
-  </div>
-  <button (click)="router.navigate(['/'])" class="mt-6 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Go Back</button>
 </div>
