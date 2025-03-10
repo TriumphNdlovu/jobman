@@ -10,5 +10,8 @@
       "src": "/(.*)",
       "dest": "/Frontend/dist/jobman/$1"
     }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
