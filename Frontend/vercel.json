@@ -1,15 +1,14 @@
 {
   "builds": [
     {
-      "src": "Frontend/package.json",
-      "use": "@vercel/static-build"
+      "src": "Frontend/angular.json",
+      "use": "@vercel/angular"
     }
   ],
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/dist/jobman/index.html"
+      "destination": "/index.html"
     }
   ]
-
 }
