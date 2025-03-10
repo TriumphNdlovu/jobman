@@ -8,7 +8,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/dist/jobman/browser/$1"
+      "destination": "/dist/jobman/browser"
     }
   ]
 }
