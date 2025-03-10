@@ -1,9 +1,8 @@
-<div class="min-h-screen relative  p-8">
+<div class="min-h-screen relative p-8">
 
   <div class="fixed inset-0 bg-cover bg-center z-0 opacity-50" style="background-image: url('/LandingBG.jpg');"></div>
 
   <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
-
 
   <div class="relative z-10">
     <h2 class="text-4xl font-extrabold text-center text-white mb-4">🚀 Your Personalized Career Suggestions</h2>
@@ -11,7 +10,7 @@
       Based on your skills, interests, and experience, here are some roles we think would be a great fit for you. Explore your potential!
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
       <div
         *ngFor="let suggestion of careerSuggestions"
         class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
@@ -20,6 +19,21 @@
         <p class="text-gray-600 mb-2"><strong class="text-indigo-600">Description:</strong> {{ suggestion.description }}</p>
         <p class="text-gray-600"><strong class="text-indigo-600">Why it fits:</strong> {{ suggestion.whyItFits }}</p>
       </div>
+    </div>
+
+    <div class="flex justify-center space-x-4">
+      <button (click)="searchAgain()" class="bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-700 transition transform hover:scale-105">
+       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Search Again
+      </button>
+      <button (click)="goBack()" class="bg-gray-600 text-white px-6 py-3 rounded-xl hover:bg-gray-700 transition transform hover:scale-105">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Back Home
+      </button>
     </div>
   </div>
 </div>
