@@ -1,8 +1,11 @@
 {
   "builds": [
     {
-      "src": "Frontend/angular.json",
-      "use": "@vercel/angular"
+      "src": "Frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "Frontend/dist/jobman"
+      }
     }
   ],
   "routes": [
@@ -12,6 +15,9 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/Frontend/dist/jobman/index.html"
+    }
   ]
 }
