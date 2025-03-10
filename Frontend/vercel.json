@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "Frontend/angular.json",
+      "use": "@vercel/angular"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/Frontend/dist/jobman/$1"
+    }
+  ]
+}
