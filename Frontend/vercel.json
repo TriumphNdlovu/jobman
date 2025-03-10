@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "src": "angular.json",
+      "src": "Frontend/angular.json",
       "use": "@vercel/angular"
     }
   ],
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/dist/jobman/$1"
     }
   ]
 }
