@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "Frontend/angular.json",
+      "src": "angular.json",
       "use": "@vercel/angular"
     }
   ],
