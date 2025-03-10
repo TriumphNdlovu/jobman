@@ -1,11 +1,24 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const helmet = require('helmet');
 dotenv.config();
 
 const app = express();
 const cors = require('cors');
 app.use(cors());
 app.use(express.json()); // to parse JSON bodies
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", 'https://jobman-tffe.onrender.com'],
+        connectSrc: ["'self'", 'https://generativelanguage.googleapis.com'],
+      },
+    },
+  })
+);
+
 
 const PORT = process.env.PORT || 5000;
 
