@@ -30,7 +30,7 @@ export class HomeComponent {
 
 
   getCareerSuggestions() {
-    return this.http.post('http://localhost:5000/career-suggestions',
+    return this.http.post('https://jobman-tfev.onrender.com/career-suggestions',
     {
       fullName: this.fullName,
       skills: this.skills,
