@@ -5,10 +5,10 @@
       "use": "@vercel/angular"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/dist/jobman/browser"
+      "src": "/(.*)",
+      "dest": "/dist/jobman/index.html"
     }
   ]
 }
