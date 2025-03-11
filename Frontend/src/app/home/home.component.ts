@@ -21,6 +21,7 @@ export class HomeComponent {
   educationLevel: string = 'high-school';
   softSkills: string = '';
   certifications: string = '';
+  highestQualification: string = '';
 
   isLoading: boolean = false;
 
@@ -39,6 +40,7 @@ export class HomeComponent {
       educationLevel: this.educationLevel,
       softSkills: this.softSkills,
       certifications: this.certifications,
+      highestQualification: this.highestQualification
     }
     );
   }

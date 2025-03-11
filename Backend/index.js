@@ -32,6 +32,7 @@ app.post('/career-suggestions', async (req, res) => {
     educationLevel,
     softSkills,
     certifications,
+    highestQualification,
   } = req.body;
 
   const { GoogleGenerativeAI } = require('@google/generative-ai');
@@ -66,6 +67,7 @@ app.post('/career-suggestions', async (req, res) => {
       - Education Level: ${educationLevel} (e.g., High School, Bachelor's Degree, Master's Degree, PhD)
       - Soft Skills: ${softSkills} (e.g., Communication, Leadership)
       - Certifications: ${certifications} (e.g., PMP, AWS)
+      - highestQualification: ${highestQualification} (e.g., BSC Computer Science, MSC Computer Science)
 
       Respond ONLY with a JSON array, like this:
 

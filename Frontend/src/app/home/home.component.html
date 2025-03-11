@@ -46,6 +46,7 @@
 
     <textarea [(ngModel)]="certifications" name="certifications" placeholder="Certifications (e.g., PMP, AWS)" class="w-full h-24 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
 
+    <textarea [(ngModel)]="highestQualification" name="highestQualification" placeholder="Highest Qualification (e.g., Bachelor's in Computer Science)" required class="w-full h-24 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
     <button type="submit" [disabled]="!careerForm.form.valid" class="w-full bg-purple-600 text-white p-4 rounded-xl hover:bg-purple-700 transition transform hover:scale-105 z-10 relative">Get Suggestions</button>
   </form>
 
