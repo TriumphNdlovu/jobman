@@ -12,7 +12,7 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        imgSrc: ["'self'", 'https://jobman-tffe.onrender.com'],
+        imgSrc: ["'self'", 'https://jobman-tfev.onrender.com'],
         connectSrc: ["'self'", 'https://generativelanguage.googleapis.com'],
       },
     },
