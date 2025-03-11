@@ -8,7 +8,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/jobman/index.html"
+      "dest": "/dist/jobman/browser/index.html"
     }
   ]
 }
