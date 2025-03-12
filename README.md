@@ -1,76 +1,35 @@
-🎓 Career Path Recommendation Tool
+# Jobman
 
-This is an AI-powered tool designed to help individuals explore potential career paths based on their skills, interests, education, and experience. It provides personalized career suggestions and explains why each recommendation aligns with the user’s profile.
+Jobman is an AI-powered career recommendation tool that helps users explore potential career paths based on their skills, education, and interests. It provides tailored career suggestions and detailed explanations on why each career might be a good fit.
 
-🚀 Features
+## 🚀 Features
 
-🧠 AI-Powered Recommendations: Get tailored career suggestions based on your input.
+- 🧠 **AI-Powered Recommendations:** Get personalized career suggestions.
+- 📝 **Skills and Interests Analysis:** Match your strengths to potential job opportunities.
+- 🎓 **Education-Based Insights:** Align your academic background with career paths.
+- 💡 **Explanations:** Understand why a particular career is suggested for you.
 
-📝 Personalized Insights: Understand why each career fits your skills and interests.
+## 🌐 Live Demo
 
-🌐 Web-Based Application: Accessible from any device with an internet connection.
+The web app is live and hosted on Vercel — [Check it out here](https://jobman-xi.vercel.app/)
 
-🛠️ Tech Stack
+## 🛠 Tech Stack
 
-Frontend: Angular
+- **Frontend:** Angular
+- **Backend:** Node.js + Express
+- **Deployment:** Vercel (Frontend), Render (Backend)
+- **AI Logic:** Custom-built recommendation engine
 
-Backend: Node.js & Express
+## 💡 Future Improvements
 
-Hosting: Vercel (Frontend), Render (Backend)
+- Enhance the recommendation algorithm for even more accurate suggestions.
+- Add user profiles to save and track recommendations.
+- Implement feedback for career suggestions.
 
-🏁 Getting Started
+## 📝 Feedback
 
-Prerequisites
+I’d love to hear your thoughts on the app and how it can be improved! Feel free to open an issue or reach out directly.
 
-Node.js & npm
+---
 
-Angular CLI
-
-Installation
-
-Clone the repository:
-
-git clone https://github.com/yourusername/your-repository.git
-
-Navigate to the project directory:
-
-cd your-repository
-
-Install dependencies:
-
-npm install
-
-Running the App
-
-To run the frontend:
-
-ng serve
-
-To run the backend:
-
-node server.js
-
-🌐 Deployment
-
-Frontend: Deployed on Vercel
-
-Backend: Deployed on Render
-
-💡 Future Improvements
-
-🗂️ Add a user profile feature to save and track career suggestions.
-
-📊 Visualize career paths with interactive charts.
-
-🌍 Expand career options with international job data.
-
-🤝 Contributing
-
-Contributions are welcome! Feel free to open issues and submit pull requests.
-
-📄 License
-
-This project is licensed under the MIT License.
-
-🚀 Built with passion by Your Name
-
+Made with ❤️ by [Triumph Ndlovu](https://github.com/TriumphNdlovu)
