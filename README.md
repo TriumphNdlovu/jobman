@@ -32,4 +32,4 @@ I’d love to hear your thoughts on the app and how it can be improved! Feel fre
 
 ---
 
-Made with ❤️ by [Triumph Ndlovu](https://github.com/TriumphNdlovu)
+Made with ❤️ by [Triumph Ndlovu](https://triumph-portfolio-seven.vercel.app/)
