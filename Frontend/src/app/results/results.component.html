@@ -1,38 +1,62 @@
-<div class="min-h-screen relative p-8">
+<div class="min-h-screen relative p-8 flex flex-col items-center justify-center">
 
-  <div class="fixed inset-0 bg-cover bg-center z-0 opacity-50" style="background-image: url('/LandingBG.jpg');"></div>
+  <!-- Background Overlay -->
+  <div class="fixed inset-0 bg-cover bg-center z-0 opacity-30" style="background-image: url('/LandingBG.jpg');"></div>
+  <div class="absolute inset-0 bg-black opacity-70 z-0"></div>
 
-  <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+  <!-- Content Wrapper -->
+  <div class="relative z-10 max-w-6xl w-full text-center">
 
-  <div class="relative z-10">
-    <h2 class="text-4xl font-extrabold text-center text-white mb-4">🚀 Your Personalized Career Suggestions</h2>
-    <p class="text-center text-lg text-gray-200 mb-10">
-      Based on your skills, interests, and experience, here are some roles we think would be a great fit for you. Explore your potential!
+    <!-- Heading Section -->
+    <h2 class="text-5xl font-extrabold text-white mb-8 leading-tight drop-shadow-lg">
+      🚀 Your Personalized Career Suggestions
+    </h2>
+    <p class="text-lg text-gray-300 mb-16 max-w-2xl mx-auto leading-relaxed">
+      Based on your unique skills, interests, and experience, we've tailored these career suggestions just for you.
+      Discover opportunities that align with your goals and passions!
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+    <!-- Suggestions Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-20">
       <div
         *ngFor="let suggestion of careerSuggestions"
-        class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
+        class="bg-white shadow-lg rounded-3xl p-8 border border-gray-200 hover:shadow-2xl transition transform hover:-translate-y-2"
       >
-        <h3 class="text-2xl font-semibold mb-4 text-indigo-800">{{ suggestion.role }}</h3>
-        <p class="text-gray-600 mb-2"><strong class="text-indigo-600">Description:</strong> {{ suggestion.description }}</p>
-        <p class="text-gray-600"><strong class="text-indigo-600">Why it fits:</strong> {{ suggestion.whyItFits }}</p>
+
+        <!-- Role Title (Left-Aligned) -->
+        <h3 class="text-3xl font-bold text-pink-600 mb-6 text-left">
+          {{ suggestion.role }}
+        </h3>
+
+        <!-- Description Section -->
+        <div class="text-gray-800 mb-6 leading-relaxed text-left">
+          <div class="border-b-2 border-pink-400 mb-2 inline-block text-lg font-semibold">
+            Description
+          </div>
+          <p class="text-gray-700">
+            {{ suggestion.description }}
+          </p>
+        </div>
+
+        <!-- Fit Section -->
+        <div class="text-gray-800 leading-relaxed text-left">
+          <div class="border-b-2 border-pink-400  mb-2 inline-block text-lg font-semibold">
+            Why It Fits You
+          </div>
+          <p class="text-gray-700">
+            {{ suggestion.whyItFits }}
+          </p>
+        </div>
       </div>
     </div>
 
-    <div class="flex justify-center space-x-4">
-      <button (click)="searchAgain()" class="bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-700 transition transform hover:scale-105">
-       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-        </svg>
+    <!-- Search Again Button -->
+    <div class="flex justify-center">
+      <button
+        (click)="searchAgain()"
+        class="bg-pink-500 text-white px-10 py-4 rounded-xl font-bold text-lg tracking-wide hover:bg-pink-600 transition transform hover:scale-110 active:scale-100 shadow-xl"
+      >
         Search Again
-      </button>
-      <button (click)="goBack()" class="bg-gray-600 text-white px-6 py-3 rounded-xl hover:bg-gray-700 transition transform hover:scale-105">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-        </svg>
-        Back Home
       </button>
     </div>
   </div>

@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
   fullName: string = '';
   skills: string = '';
   interests: string = '';
-  experienceLevel: string = 'entry';
-  educationLevel: string = 'high-school';
+  experienceLevel: string = '';
+  educationLevel: string = '';
   softSkills: string = '';
   certifications: string = '';
   highestQualification: string = '';
@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit {
       this.fullName = '';
       this.skills = '';
       this.interests = '';
-      this.experienceLevel = 'entry';
-      this.educationLevel = 'high-school';
+      this.experienceLevel = '';
+      this.educationLevel = '';
       this.softSkills = '';
       this.certifications = '';
       this.highestQualification = '';
@@ -48,8 +48,8 @@ export class HomeComponent implements OnInit {
       fullName: this.fullName || '',
       skills: this.skills || '',
       interests: this.interests || '',
-      experienceLevel: this.experienceLevel || 'entry',
-      educationLevel: this.educationLevel || 'high-school',
+      experienceLevel: this.experienceLevel || '',
+      educationLevel: this.educationLevel || '',
       softSkills: this.softSkills || '',
       certifications: this.certifications || '',
       highestQualification: this.highestQualification || ''
