@@ -39,7 +39,7 @@
 
     <!-- Experience Level -->
     <label for="experienceLevel" class="text-lg font-semibold">Experience Level</label>
-    <select [(ngModel)]="experienceLevel.value" name="experienceLevel" required #experienceLevel="ngModel"
+    <select [(ngModel)]="experienceLevel" name="experienceLevel" required #experienceLevel="ngModel"
       [class.border-red-500]="careerForm.submitted && experienceLevel.invalid"
       class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400">
       <option value=''>Select experience level</option>
@@ -53,7 +53,7 @@
 
     <!-- Education Level -->
     <label for="educationLevel" class="text-lg font-semibold">Education Level</label>
-    <select [(ngModel)]="educationLevel.value" name="educationLevel" required #educationLevel="ngModel"
+    <select [(ngModel)]="educationLevel" name="educationLevel" required #educationLevel="ngModel"
       [class.border-red-500]="careerForm.submitted && educationLevel.invalid"
       class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400">
       <option value=''>Select education level</option>
