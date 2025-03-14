@@ -1,57 +1,62 @@
 <div class="relative flex flex-col items-center justify-center bg-black min-h-screen">
-  <!-- Background image with opacity fix -->
   <div class="fixed inset-0 bg-cover bg-center z-0 opacity-60" style="background-image: url('/LandingBG.jpg');"></div>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    class="w-20 h-20 mx-auto text-purple-600 z-10"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M3 7h18M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 0 012 2v2"
-    />
-  </svg>
 
   <h1 class="text-5xl font-extrabold text-white mb-10 text-center z-10 relative">Jobman</h1>
   <p class="text-center text-lg text-white font-bold mb-12 z-10 relative backdrop-blur-2xl">
-    Welcome to JobMan! Let’s gather some details to find your perfect career match.
+    Welcome to Jobman! Let’s gather some details to find your perfect career match.
   </p>
 
-  <form (ngSubmit)="onSubmit()" #careerForm="ngForm" class="space-y-8 bg-white p-12 shadow-2xl rounded-2xl w-full max-w-4xl z-10 relative">
-    <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Full Name" required class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400" />
+  <form (ngSubmit)="onSubmit(careerForm)" #careerForm="ngForm" class="space-y-8 bg-white p-12 shadow-2xl rounded-2xl w-full max-w-4xl z-10 relative">
+    <label for="fullName" class="text-lg font-semibold">Full Name</label>
+    <input type="text" [(ngModel)]="fullName.value" name="fullName" placeholder="Full Name" required #fullName="ngModel" class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400" />
+    <div *ngIf="fullName.invalid && fullName.touched" class="text-red-500">Full Name is required.</div>
 
-    <textarea [(ngModel)]="skills" name="skills" placeholder="Skills (e.g., Java, Design)" required class="w-full h-32 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
+    <label for="skills" class="text-lg font-semibold">Skills</label>
+    <textarea [(ngModel)]="skills.value" name="skills" placeholder="Skills (e.g., Java, Design)" required #skills="ngModel" class="w-full h-32 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
+    <div *ngIf="skills.invalid && skills.touched" class="text-red-500">Skills are required.</div>
 
-    <textarea [(ngModel)]="interests" name="interests" placeholder="Interests (e.g., Development, Research)" required class="w-full h-32 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
+    <label for="interests" class="text-lg font-semibold">Interests</label>
+    <textarea [(ngModel)]="interests.value" name="interests" placeholder="Interests (e.g., Development, Research)" required #interests="ngModel" class="w-full h-32 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
+    <div *ngIf="interests.invalid && interests.touched" class="text-red-500">Interests are required.</div>
 
+    <label for="experienceLevel" class="text-lg font-semibold">Experience Level</label>
     <select [(ngModel)]="experienceLevel" name="experienceLevel" required class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400">
       <option value="entry">Entry Level (0-2 years)</option>
       <option value="mid">Mid Level (3-5 years)</option>
       <option value="senior">Senior Level (6+ years)</option>
     </select>
 
+    <label for="educationLevel" class="text-lg font-semibold">Education Level</label>
     <select [(ngModel)]="educationLevel" name="educationLevel" required class="w-full p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400">
       <option value="high-school">High School</option>
+      <option value="diploma">Diploma</option>
       <option value="bachelors">Bachelor's Degree</option>
+      <option value="Honours">Honours Degree</option>
       <option value="masters">Master's Degree</option>
       <option value="phd">PhD</option>
     </select>
 
+    <label for="highestQualification" class="text-lg font-semibold">Highest Qualification</label>
+    <textarea [(ngModel)]="highestQualification.value" name="highestQualification" placeholder="Highest Qualification (e.g., Bachelor's in Computer Science)" required #highestQualification="ngModel" class="w-full h-24 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
+    <div *ngIf="highestQualification.invalid && highestQualification.touched" class="text-red-500">Highest qualification is required.</div>
+
+    <label for="softSkills" class="text-lg font-semibold">Soft Skills</label>
     <textarea [(ngModel)]="softSkills" name="softSkills" placeholder="Soft Skills (e.g., Communication, Leadership)" class="w-full h-24 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
 
+    <label for="certifications" class="text-lg font-semibold">Certifications</label>
     <textarea [(ngModel)]="certifications" name="certifications" placeholder="Certifications (e.g., PMP, AWS)" class="w-full h-24 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
 
-    <textarea [(ngModel)]="highestQualification" name="highestQualification" placeholder="Highest Qualification (e.g., Bachelor's in Computer Science)" required class="w-full h-24 p-4 border border-purple-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-purple-400"></textarea>
+
     <button type="submit" [disabled]="!careerForm.form.valid" class="w-full bg-purple-600 text-white p-4 rounded-xl hover:bg-purple-700 transition transform hover:scale-105 z-10 relative">Get Suggestions</button>
   </form>
 
-  <div *ngIf="isLoading" class="absolute bottom-12 text-center z-10">
-    <div class="w-14 h-14 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-    <p class="text-purple-600 mt-4 text-lg font-semibold">Loading your personalized job suggestions...</p>
+  <div *ngIf="errorMessage" class="text-red-500 text-lg font-bold mt-4">{{ errorMessage }}</div>
+
+  <div *ngIf="isLoading" class="fixed inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center z-50 backdrop-blur-md">
+  <div class="flex flex-col items-center">
+    <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+    <p class="text-white mt-6 text-xl font-semibold animate-pulse">Finding the best job suggestions for you...</p>
   </div>
+</div>
+
 </div>
