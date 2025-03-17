@@ -1,0 +1,37 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-6">
+  <!-- Title -->
+   <div class="animate__animated animate__fadeIn animate__slow">
+      <svg class="w-28 h-28 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 7h18M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 0 012 2v2" />
+      </svg>
+    </div>
+  <h1 class="text-5xl font-extrabold mb-6 text-center">
+  <span class="text-pink-400">JobMan</span> 🚀
+  </h1>
+
+  <!-- Subtitle -->
+  <p class="text-lg text-gray-300 text-center max-w-2xl">
+    Choose the Service you want to use from the options below.
+  </p>
+
+  <!-- Navigation Cards -->
+  <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 w-full max-w-4xl">
+    <!-- Career Suggestions Card -->
+    <div onclick="location.href='/home'" class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-500 flex flex-col items-center justify-center text-center cursor-pointer transform transition-all hover:scale-105 hover:bg-gray-700">
+      <div class="text-4xl">💼</div>
+      <h2 class="text-2xl font-bold mt-4 text-pink-400">Career Suggestions</h2>
+      <p class="text-gray-300 mt-2 text-sm">Find the best career path tailored to you.</p>
+    </div>
+
+    <!-- CV Review Card -->
+    <div onclick="location.href='/cv-review'" class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-500 flex flex-col items-center justify-center text-center cursor-pointer transform transition-all hover:scale-105 hover:bg-gray-700">
+      <div class="text-4xl">📄</div>
+      <h2 class="text-2xl font-bold mt-4 text-pink-400">CV Review</h2>
+      <p class="text-gray-300 mt-2 text-sm">Get feedback on your resume.</p>
+    </div>
+
+
+  </div>
+</div>
+
