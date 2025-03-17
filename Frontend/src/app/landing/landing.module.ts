@@ -4,13 +4,5 @@ import { LandingComponent } from './landing.component'; // Your landing componen
 import { ButtonComponent } from '../button/button.component';  // Import ButtonComponent
 
 @NgModule({
-  declarations: [
-    LandingComponent
-  ],
-  imports: [
-    CommonModule,
-    ButtonComponent
-  ],
-  exports: [ LandingComponent ]
 })
 export class LandingModule { }
