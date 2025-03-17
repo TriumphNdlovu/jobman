@@ -1,32 +1,32 @@
 <div class="relative flex flex-col items-center justify-center h-screen bg-cover bg-center" style="background-image: url('/LandingBG.jpg');">
-  <div class="absolute inset-0 bg-black opacity-50"></div>
-  <div class="relative z-10 flex flex-col items-center justify-center">
-    <svg
-      class="w-24 h-24 text-white animate__animated animate__fadeIn animate__delay-0s"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <!-- Drawing of a briefcase -->
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M3 7h18M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 0 012 2v2"
-      />
-    </svg>
-    <h1 class="text-5xl font-extrabold text-white mb-6 text-center animate__animated animate__fadeIn animate__delay-1s">
-      Welcome to JobMan
+  <!-- Background Overlay -->
+  <div class="absolute inset-0 bg-black opacity-60 backdrop-blur-md"></div>
+
+  <!-- Content Wrapper -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center space-y-6">
+    <!-- Animated Logo -->
+    <div class="animate__animated animate__fadeIn animate__slow">
+      <svg class="w-28 h-28 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 7h18M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm0 0V5a2 2 0 012-2h10a2 2 0 012 2v2" />
+      </svg>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-6xl font-extrabold text-white animate__animated animate__fadeInDown animate__delay-1s">
+      Welcome to <span class="text-pink-400">JobMan</span>
     </h1>
-    <p class="text-lg text-white mb-8 text-center">
-      Your one-stop shop for career suggestions and job applications, all in one place.
-      <br/>
-      Get started now and find your dream job!
+
+    <!-- Subtitle -->
+    <p class="text-lg text-gray-200 max-w-2xl animate__animated animate__fadeInUp animate__delay-2s">
+      Your one-stop platform for career guidance and job applications.
+      <br />
+      Take control of your future and find your dream job today!
     </p>
 
+    <!-- Get Started Button -->
     <button
-      class="bg-pink-400 text-black font-bold py-2 px-4 rounded-lg shadow-lg uppercase hover:bg-white hover:cursor-pointer text-sm animate__animated animate__fadeIn animate__delay-3s"
+      class="bg-pink-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg uppercase tracking-wide text-lg transition-transform transform hover:scale-105 hover:shadow-pink-500/50 animate__animated animate__fadeInUp animate__delay-3s"
       (click)="router.navigate(['/home'])"
     >
       Get Started
