@@ -1,6 +1,9 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
+const multer = require("multer");
+const pdfParse = require("pdf-parse");
+
 dotenv.config();
 
 const app = express();
@@ -21,21 +24,7 @@ app.use(
 
 
 const PORT = process.env.PORT || 5000;
-
-// Example endpoint for career suggestions
-app.post('/career-suggestions', async (req, res) => {
-  const {
-    fullName,
-    skills,
-    interests,
-    experienceLevel,
-    educationLevel,
-    softSkills,
-    certifications,
-    highestQualification,
-  } = req.body;
-
-  const { GoogleGenerativeAI } = require('@google/generative-ai');
+ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
   const apiKey = process.env.GOOGLE_STUDIO_ID;
   const genAI = new GoogleGenerativeAI(apiKey);
@@ -50,6 +39,20 @@ app.post('/career-suggestions', async (req, res) => {
     topK: 40,
     maxOutputTokens: 8192,
   };
+// Example endpoint for career suggestions
+app.post('/career-suggestions', async (req, res) => {
+  const {
+    fullName,
+    skills,
+    interests,
+    experienceLevel,
+    educationLevel,
+    softSkills,
+    certifications,
+    highestQualification,
+  } = req.body;
+
+ 
 
   try {
     const chatSession = model.startChat({
@@ -112,6 +115,55 @@ app.post('/career-suggestions', async (req, res) => {
 });
 
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+// The CV Scoring 
+app.post("/cvupload", upload.single("cv"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const text = await pdfParse(req.file.buffer);
+    const content = text.text.toLowerCase();
+
+    const prompt = `Here is a parsed text of my CV:\n\n${content}\n\nPlease give me an ATS score based on industry standards. Respond ONLY with a JSON object like this:
+
+    {
+      "score": 85,
+      "feedback": "Your CV has strong technical keywords but could improve formatting and readability."
+    }
+     Your entire response should start with { and end with }. No additional comments, explanations, or headers.  
+    `;
+
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.0-flash',
+    });
+
+    const chatSession = model.startChat({
+      generationConfig,
+      history: [],
+    });
+
+    const result = await chatSession.sendMessage(prompt);
+    const textResult = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+
+    // Ensure it's valid JSON
+    let parsedResponse;
+    try {
+      parsedResponse = JSON.parse(textResult.replace(/^```json\s*/, '').replace(/```$/, ''));
+    } catch (err) {
+      console.error("Invalid AI response format:", err);
+      return res.status(500).json({ error: "AI returned an invalid response" });
+    }
+
+    res.status(200).json(parsedResponse);
+  } catch (err) {
+    console.error("Error analyzing CV:", err);
+    res.status(500).json({ error: "Error analyzing CV" });
+  }
+});
 
 // Start the server
 app.listen(PORT, () => {
