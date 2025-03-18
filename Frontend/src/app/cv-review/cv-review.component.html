@@ -9,19 +9,26 @@
   <div class="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md flex flex-col items-center">
     <label for="cvUpload"
       class="cursor-pointer w-full flex flex-col items-center p-4 border-2 border-gray-600 rounded-lg bg-gray-700 hover:bg-gray-600 transition">
-      <svg class="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+      <svg *ngIf="!this.selectedFile" class="w-12 h-12 text-pink-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M4 12l4-4m0 0l4 4m-4-4v12"></path>
       </svg>
-      <span class="text-gray-300">Click to upload your Resume (PDF only)</span>
+
+      <h1 *ngIf="this.selectedFile" class="text-4xl font-extrabold mb-4 text-center">📄</h1>
+
+      <span *ngIf="!this.selectedFile" class="text-gray-300">Click to upload your Resume (PDF only)</span>
+      <span *ngIf="this.selectedFile" class="text-pink-400">Uploaded File: {{this.selectedFile.name}}</span>
     </label>
     <input id="cvUpload" type="file" (change)="onFileSelected($event)" accept=".pdf" class="hidden" />
   </div>
 
   <!-- Submit Button -->
   <button (click)="uploadCV()"
-    class="mt-6 px-6 py-3 bg-pink-500 text-black font-bold rounded-lg hover:bg-pink-600 transform transition hover:scale-105">
+    *ngIf="selectedFile"
+    class="mt-6 px-6 py-3 bg-pink-500 text-black font-bold rounded-lg
+         hover:bg-pink-600 transform transition hover:scale-105
+     ">
     Analyze Resume
   </button>
 
