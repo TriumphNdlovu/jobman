@@ -128,7 +128,9 @@ app.post("/cvupload", upload.single("cv"), async (req, res) => {
     const text = await pdfParse(req.file.buffer);
     const content = text.text.toLowerCase();
 
-    const prompt = `Here is a parsed text of my CV:\n\n${content}\n\nPlease give me an ATS score based on industry standards. Respond ONLY with a JSON object like this:
+    const prompt = `Here is a parsed text of my CV:\n\n${content}\n\nPlease give me an ATS score based on industry standards.
+    Evaluate the CV's ATS compatibility on a scale from 0 to 100 based on industry best practices. Do not assume an average score.
+    Respond ONLY with a JSON object like this:
 
     {
       "score": 85,
