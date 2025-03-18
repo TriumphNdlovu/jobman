@@ -134,7 +134,8 @@ app.post("/cvupload", upload.single("cv"), async (req, res) => {
       "score": 85,
       "feedback": "Your CV has strong technical keywords but could improve formatting and readability."
     }
-     Your entire response should start with { and end with }. No additional comments, explanations, or headers.  
+     Your entire response should start with { and end with }. No additional comments, explanations, or headers.
+     Please make sure of that it is very critical
     `;
 
     const model = genAI.getGenerativeModel({
@@ -148,8 +149,8 @@ app.post("/cvupload", upload.single("cv"), async (req, res) => {
 
     const result = await chatSession.sendMessage(prompt);
     const textResult = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+    console.log("testing: " + textResult);
 
-    // Ensure it's valid JSON
     let parsedResponse;
     try {
       parsedResponse = JSON.parse(textResult.replace(/^```json\s*/, '').replace(/```$/, ''));
