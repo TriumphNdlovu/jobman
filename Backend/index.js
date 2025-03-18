@@ -34,10 +34,10 @@ const PORT = process.env.PORT || 5000;
   });
 
   const generationConfig = {
-    temperature: 1,
-    topP: 0.95,
-    topK: 40,
-    maxOutputTokens: 8192,
+    temperature: 0.7,
+    topP: 0.9,
+    topK: 50,
+    maxOutputTokens:512,
   };
 // Example endpoint for career suggestions
 app.post('/career-suggestions', async (req, res) => {
