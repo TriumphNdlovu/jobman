@@ -1,4 +1,4 @@
-<div class="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-6">
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-6 relative">
   <!-- Title -->
   <h1 class="text-4xl font-extrabold mb-4 text-center">📄 CV Review</h1>
   <p class="text-gray-300 text-lg text-center max-w-lg">
@@ -7,8 +7,8 @@
 
   <!-- File Upload Box -->
   <div class="mt-8 bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md flex flex-col items-center">
-    <label for="cvUpload" class="cursor-pointer w-full flex flex-col items-center p-4 border-2 border-gray-600
-      rounded-lg bg-gray-700 hover:bg-gray-600 transition">
+    <label for="cvUpload"
+      class="cursor-pointer w-full flex flex-col items-center p-4 border-2 border-gray-600 rounded-lg bg-gray-700 hover:bg-gray-600 transition">
       <svg class="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -16,8 +16,7 @@
       </svg>
       <span class="text-gray-300">Click to upload your Resume (PDF only)</span>
     </label>
-    <input id="cvUpload" type="file" (change)="onFileSelected($event)" accept=".pdf"
-      class="hidden" />
+    <input id="cvUpload" type="file" (change)="onFileSelected($event)" accept=".pdf" class="hidden" />
   </div>
 
   <!-- Submit Button -->
@@ -32,9 +31,9 @@
     <p class="text-gray-300 mt-2 text-center">{{ feedback }}</p>
   </div>
 
-  <div *ngIf="loading === true" class="z-5 bg-red-600" >
-   <p class="text-white">
-    Page is Loading
-   </p>
+  <!-- Loading Screen -->
+  <div *ngIf="loading" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex flex-col items-center justify-center z-50">
+    <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-pink-500"></div>
+    <p class="text-white mt-4 text-lg font-semibold">Analyzing Resume...</p>
   </div>
 </div>
