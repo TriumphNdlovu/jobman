@@ -15,6 +15,7 @@ export class CvReviewComponent {
   selectedFile: File | null = null;
   cvScore: number | null = null;
   feedback: string = '';
+  loading: boolean = false;
 
   // Handle file selection
   onFileSelected(event: any) {
@@ -35,7 +36,7 @@ export class CvReviewComponent {
 
   const formData = new FormData();
   formData.append("cv", this.selectedFile);
-
+  this.loading = true;
   fetch("https://jobman-tfev.onrender.com/cvupload", {
 
     method: "POST",
@@ -45,7 +46,13 @@ export class CvReviewComponent {
     .then(data => {
       this.cvScore = data.score;
       this.feedback = data.feedback;
+      this.loading = false;
+
     })
-    .catch(error => console.error("Error:", error));
+    .catch(error =>
+      {
+        console.error("Error:", error);
+        this.loading = false;
+      });
   }
 }

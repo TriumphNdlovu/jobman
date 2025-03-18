@@ -14,7 +14,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M4 12l4-4m0 0l4 4m-4-4v12"></path>
       </svg>
-      <span class="text-gray-300">Click to upload your CV (PDF only)</span>
+      <span class="text-gray-300">Click to upload your Resume (PDF only)</span>
     </label>
     <input id="cvUpload" type="file" (change)="onFileSelected($event)" accept=".pdf"
       class="hidden" />
@@ -30,5 +30,11 @@
   <div *ngIf="cvScore !== null" class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg w-full max-w-md">
     <h2 class="text-2xl font-bold text-center">Resume Score: <span class="text-pink-400">{{ cvScore }} / 100</span></h2>
     <p class="text-gray-300 mt-2 text-center">{{ feedback }}</p>
+  </div>
+
+  <div *ngIf="loading === true" class="z-5 bg-red-600" >
+   <p class="text-white">
+    Page is Loading
+   </p>
   </div>
 </div>
