@@ -37,7 +37,7 @@ export class CvReviewComponent {
   const formData = new FormData();
   formData.append("cv", this.selectedFile);
   this.loading = true;
-  fetch("http://localhost:5000/cvupload", {
+  fetch("https://jobman-tfev.onrender.com/cvupload", {
 
     method: "POST",
     body: formData
